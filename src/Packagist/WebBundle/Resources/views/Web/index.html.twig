@@ -2,7 +2,7 @@
 
 {% block search %}
     <div class="box">
-        <p>Packagist is the main <a href="http://getcomposer.org/">Composer</a> repository. It aggregates all sorts of PHP packages that are installable with Composer.<br /><a href="{{ path('browse') }}">Browse packages</a> or <a href="{{ path('submit') }}">submit your own</a>.</p>
+        <p>Wolf Extensions is the official <a href="http://wolfcms.org/">Wolf CMS</a> extensions repository. It aggregates all sort of extension packages that are installable with Composer for a Wolf CMS installation.<br /><a href="{{ path('browse') }}">Browse packages</a> or <a href="{{ path('submit') }}">submit your own</a>.</p>
     </div>
 
     {{ parent() }}
@@ -11,61 +11,77 @@
 {% block content %}
     <div class="box clearfix">
         <section class="getting-started">
-            <h1>Getting Started</h1>
+            <h1>Using Extensions</h1>
             <div>
-                <h2>Define Your Dependencies</h2>
-                <p>Put a file named <em>composer.json</em> at the root of your project, containing your project dependencies:</p>
+                <h2>Define Your Extensions</h2>
+                <p>It <strong>should already be there</strong>, but in case it is not, put a file named <em>composer.json</em> at the root of your Wolf CMS installation. Put the following in the file, and add / complete the list of extensions you want for this installation:</p>
                 <pre>
 {
+    "name": "wolfcms/wolfcms",
+    "description": "The Wolf CMS core system.",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://wolfextensions.org"
+        }
+    ],
     "require": {
-        "vendor/package": "1.3.2",
-        "vendor/package2": "1.*",
-        "vendor/package3": ">=2.0.3"
+        "php": ">=5.3.0",
+        "wolfcms/backup-restore": "0.8.0",
+        "wolfcms/multi-lang": "1.0.0",
+        "composer/installers": "v1.0.11"
+    },
+    "require-dev": {
+        "satooshi/php-coveralls": "dev-master"
     }
 }
 </pre>
-                <h2>Install Composer In Your Project</h2>
+<p>
+This composer.json file will load extensions from the Wolf Extensions repository as well as the regular <a href="http://packagist.org">Packagist</a> repository if needed.
+</p>
+<p>
+Please note that <code>"composer/installers"</code> is a mandatory package since it is used by composer to know where to install the plugins.
+</p>
+                <h2>Install Composer</h2>
+                <p>Since this repository is Composer based, you will need to install Composer in your Wolf CMS installation directory or globally on the system.</p>
                 <p>Run this in your command line:</p>
                 <pre>
 curl -s http://getcomposer.org/installer | php
 </pre>
-                <p>Or <a href="http://getcomposer.org/composer.phar">download composer.phar</a> into your project root.</p>
-                <h2>Install Dependencies</h2>
-                <p>Execute this in your project root.</p>
+                <p>Or <a href="http://getcomposer.org/composer.phar">download composer.phar</a> into your Wolf CMS root.</p>
+                <h2>Install Extensions</h2>
+                <p>Execute this in your Wolf CMS root.</p>
                 <pre>
 php composer.phar install
 </pre>
-                <h2>Autoload Dependencies</h2>
-                <p>If all your packages follow the <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md">PSR-0</a> standard, you can autoload all the dependencies by adding this to your code:</p>
-                <pre>
-require 'vendor/autoload.php';
-</pre>
+                <h2>Activating Extensions</h2>
+                <p>Most extensions will automatically become available, like helpers, but plugins need to be enabled manually through the admin interface:</p>
 
-                <p><a href="{{ path('browse') }}">Browse</a> the packages we have to find more great libraries you can use in your project.</p>
+                <p><a href="{{ path('browse') }}">Browse</a> the extensions we have to find more great stuff you can use in your site.</p>
             </div>
         </section>
 
         <section class="publishing-packages">
-            <h1>Publishing Packages</h1>
+            <h1>Publishing Extensions</h1>
             <div>
-                <h2>Define Your Package</h2>
-                <p>Put a file named <em>composer.json</em> at the root of your package, containing this information:</p>
+                <h2>Define Your Extension</h2>
+                <p>Create a file named <em>composer.json</em> at the root of your extension, containing this information:</p>
                 <pre>
 {
-    "name": "your-vendor-name/package-name",
-    "description": "A short description of what your package does",
+    "name": "your-vendor-name/your-extension-name",
+    "description": "A short description of what your extension does.",
+    "type": "wolfcms-plugin",
     "require": {
-        "php": ">=5.3.0",
-        "another-vendor/package": "1.*"
+        "wolfcms/wolfcms": ">=0.7.8"
     }
 }
 </pre>
-                <p>This is the strictly minimal information you have to give.</p>
-                <p>For more details about package naming and the fields you can use to document your package better, see the <a href="{{ path('about') }}">about</a> page.</p>
+                <p>Currently, the repository only knows one extension type: "wolfcms-plugin".</p>
+                <p>For more details about extension naming and the fields you can use to document your extension better, see the <a href="{{ path('about') }}">about</a> page.</p>
                 <h2>Commit The File</h2>
-                <p>You surely don't need help with that.</p>
+                <p>Just commit it to your extension's GitHub, BitBucket or other public source code repository. You surely don't need help with that.</p>
                 <h2>Publish It</h2>
-                <p><a href="{{ path('hwi_oauth_connect') }}">Login</a> or <a href="{{ path('fos_user_registration_register') }}">register</a> on this site, then hit the big fat green button above that says <a href="{{ path('submit') }}">submit</a>.</p>
+                <p><a href="{{ path('hwi_oauth_connect') }}">Login</a> or <a href="{{ path('fos_user_registration_register') }}">register</a> on this site, then hit the big fat button above that says <a href="{{ path('submit') }}">submit</a>.</p>
                 <p>Once you entered your public repository URL in there, your package will be automatically crawled periodically. You just have to make sure you keep the composer.json file up to date.</p>
             </div>
         </section>

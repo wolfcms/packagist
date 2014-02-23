@@ -1,5 +1,5 @@
 menu:
-    about_packagist: About Packagist
+    about_packagist: About Wolf Extensions
     rss_feeds: Atom/RSS Feeds
     about_composer: About Composer
     home: Home
@@ -7,8 +7,8 @@ menu:
     logout: Logout
     login: Login
     register: Register
-    browse_packages: Browse Packages
-    twitter: Follow @packagist
+    browse_packages: Browse Extensions
+    twitter: Follow @wolfcms
     contact: Contact
     stats: Statistics
 

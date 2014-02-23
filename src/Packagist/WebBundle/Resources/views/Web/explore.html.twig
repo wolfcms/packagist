@@ -15,7 +15,7 @@
                 </ul>
             </div>
             <div class="packages-short">
-                <h2>New Packages <a href="{{ url('feed_packages', {_format: 'rss'}) }}">RSS</a></h2>
+                <h2>New Extensions <a href="{{ url('feed_packages', {_format: 'rss'}) }}">RSS</a></h2>
                 <ul>
                     {% for pkg in newlySubmitted %}
                         <li><a href="{{ path('view_package', {name: pkg.name}) }}">{{ pkg.name }}</a> {{ pkg.description|truncate(40) }}</li>
@@ -23,7 +23,7 @@
                 </ul>
             </div>
             <div class="packages-short">
-                <h2>Popular Packages</h2>
+                <h2>Popular Extensions</h2>
                 <ul>
                     {% for pkg in popular %}
                         <li><a href="{{ path('view_package', {name: pkg.name}) }}">{{ pkg.name }}</a> {{ pkg.description|truncate(40) }}</li>
@@ -32,7 +32,7 @@
                 </ul>
             </div>
             <div class="packages-short">
-                <h2>Random Packages</h2>
+                <h2>Random Extensions</h2>
                 <ul>
                     {% for pkg in random %}
                         <li><a href="{{ path('view_package', {name: pkg.name}) }}">{{ pkg.name }}</a> {{ pkg.description|truncate(40) }}</li>

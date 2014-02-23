@@ -53,13 +53,13 @@
                 and app.user and (package.maintainers.contains(app.user) or is_granted('ROLE_UPDATE_PACKAGES'))
                 and "//github.com/" in package.repository
             %}
-                <p class="warning">This package is not auto-updated. Go and set up the <a href="{{ path('fos_user_profile_show') }}">GitHub Service Hook</a> for Packagist so that it gets updated whenever you push!</p>
+                <p class="warning">This extension is not auto-updated. Go and set up the <a href="{{ path('fos_user_profile_show') }}">Service Hook or Post Service</a> for Wolf Extensions so that it gets updated whenever you push!</p>
             {% endif %}
 
             {% if package.updateFailureNotified
                 and app.user and (package.maintainers.contains(app.user) or is_granted('ROLE_UPDATE_PACKAGES'))
             %}
-                <p class="warning">This package is in a broken state and will not update anymore. Some branches contain invalid data and until you fix them the entire package is frozen. Click "Force Update" above to see details.</p>
+                <p class="warning">This extensions is in a broken state and will not update anymore. Some branches contain invalid data and until you fix them, the entire extension is frozen. Click "Force Update" above to see details.</p>
             {% endif %}
 
             <p class="downloads">
@@ -171,9 +171,9 @@
                     {% endfor %}
                 </ul>
             {% elseif package.crawledAt is null %}
-                <p>This package has not been crawled yet, some information is missing.</p>
+                <p>This extension has not been crawled yet, some information is missing.</p>
             {% else %}
-                <p>This package has no released version yet, and little information is available.</p>
+                <p>This extension has no released version yet, and little information is available.</p>
             {% endif %}
         </div>
     </div>

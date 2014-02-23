@@ -893,7 +893,7 @@ class WebController extends Controller
             $downloads = $redis->get('downloads') ?: 0;
 
             $date = new \DateTime($downloadsStartDate.' 00:00:00');
-            $yesterday = new \DateTime('-2days 00:00:00');
+            $yesterday = new \DateTime('-1days 00:00:00');
 
             $dlChart = $dlChartMonthly = array();
             while ($date <= $yesterday) {
